@@ -15,11 +15,11 @@ module RubyLLM
       end
 
       def models_file
-        File.expand_path('models.json', __dir__)
+        RubyLLM.config.models_file_path || File.expand_path('models.json', __dir__)
       end
 
       def schema_file
-        File.expand_path('models_schema.json', __dir__)
+        RubyLLM.config.models_schema_file_path || File.expand_path('models_schema.json', __dir__)
       end
 
       def refresh!(remote_only: false)
@@ -27,6 +27,8 @@ module RubyLLM
         parsera_models = fetch_from_parsera
         merged_models = merge_models(provider_models, parsera_models)
         @instance = new(merged_models)
+        @instance.save_to_json
+        @instance
       end
 
       def fetch_from_providers(remote_only: true)
@@ -170,7 +172,10 @@ module RubyLLM
     end
 
     def save_to_json
-      File.write(self.class.models_file, JSON.pretty_generate(all.map(&:to_h)))
+      models_file = self.class.models_file
+      # Ensure directory exists
+      FileUtils.mkdir_p(File.dirname(models_file))
+      File.write(models_file, JSON.pretty_generate(all.map(&:to_h)))
     end
 
     def all
