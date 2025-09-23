@@ -356,6 +356,7 @@ RubyLLM.configure do |config|
   config.log_stream_debug = Boolean
 
   # Model Metadata Storage
+  config.aliases_file_path = String       # Custom path for aliases.json
   config.models_file_path = String        # Custom path for models.json
   config.models_schema_file_path = String # Custom path for models_schema.json
 end

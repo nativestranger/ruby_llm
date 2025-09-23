@@ -32,6 +32,7 @@ module RubyLLM
                   :model_registry_class,
                   :models_file_path,
                   :models_schema_file_path,
+                  :aliases_file_path,
                   # Rails integration
                   :use_new_acts_as,
                   # Connection configuration

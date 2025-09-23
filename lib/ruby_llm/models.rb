@@ -27,7 +27,6 @@ module RubyLLM
         parsera_models = fetch_from_parsera
         merged_models = merge_models(provider_models, parsera_models)
         @instance = new(merged_models)
-        @instance.save_to_json
         @instance
       end
 

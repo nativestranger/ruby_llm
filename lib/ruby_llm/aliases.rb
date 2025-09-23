@@ -19,7 +19,7 @@ module RubyLLM
       end
 
       def aliases_file
-        File.expand_path('aliases.json', __dir__)
+        RubyLLM.config.aliases_file_path || File.expand_path('aliases.json', __dir__)
       end
 
       def load_aliases
