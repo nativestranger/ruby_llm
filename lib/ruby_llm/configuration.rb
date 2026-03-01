@@ -8,6 +8,7 @@ module RubyLLM
                   :openai_organization_id,
                   :openai_project_id,
                   :openai_use_system_role,
+                  :anthropic_api_base,
                   :azure_api_base,
                   :azure_api_key,
                   :azure_ai_auth_token,
